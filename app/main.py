@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-
-app = FastAPI(title="sre platform demo")
+from app.config import APP_NAME,APP_VERSION
+app = FastAPI(title=APP_NAME)
 
 @app.get("/")
 def root():
@@ -17,7 +17,7 @@ def health():
 @app.get("/version")
 def version():
   return {
-     "version":"1.0.0"
+     "version": APP_VERSION
   }
 
 #__main__ means "run this part only when this file is executed directly.
