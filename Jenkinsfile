@@ -1,5 +1,8 @@
 pipeline{
   agent any
+  environment {
+        PATH = "/Users/richaparikh/.docker/bin:/opt/homebrew/bin:${env.PATH}"
+  }
   stages{
      stage('Create virtual environment') {
             steps {
@@ -18,7 +21,7 @@ pipeline{
      }
     stage('Docker Build') {
       steps {
-         sh '/Users/richaparikh/.docker/bin/docker build -t sre-demo:v1 .'
+         sh 'docker build -t sre-demo:v1 .'
       }
     }
   }
