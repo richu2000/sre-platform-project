@@ -16,5 +16,10 @@ pipeline{
            sh '.venv/bin/python -m pytest'
        }
      }
+    stage('Docker Build') {
+      steps {
+         sh '/Users/richaparikh/.docker/bin/docker build -t sre-demo:v1 .'
+      }
+    }
   }
 }
