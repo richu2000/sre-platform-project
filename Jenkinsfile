@@ -28,7 +28,7 @@ pipeline{
               returnStdout: true
            ).trim()
            echo "Building commit:${env.GIT_SHA}"
-           env.DOCKER_IMAGE = "DOCKER_USER/myrepo:${GIT_SHA}"
+           env.DOCKER_IMAGE = "$DOCKER_USER/myrepo:${GIT_SHA}"
            echo "Image: ${env.DOCKER_IMAGE}"
          }
        }
