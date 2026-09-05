@@ -1,5 +1,5 @@
 pipeline{
-  agents any
+  agent any
   stages{
      stage('Checkout'){
        steps{
@@ -8,13 +8,13 @@ pipeline{
      } 
      stage('Install dependancies'){
        steps{
-         sh 'pip3 install -r app/requirements.txt'
+         sh '.venv/bin/python -m pip install -r requirements.txt'
        }
      }
      stage('Test'){
        steps{
          steps{
-           sh 'pytest'
+           sh '.venv/bin/python -m pytest'
          }
        }
      }
