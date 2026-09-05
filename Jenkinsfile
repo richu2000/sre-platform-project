@@ -55,7 +55,7 @@ pipeline{
                      --password-stdin
 
                  docker push \
-                     "$DOCKER_USER/sre-demo:$GIT_SHA"
+                     "$DOCKER_USER/myrepo:$GIT_SHA"
              '''
          } 
       }
