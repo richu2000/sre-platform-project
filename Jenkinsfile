@@ -2,6 +2,7 @@ pipeline{
   agent any
   environment {
         PATH = "/Users/richaparikh/.docker/bin:/opt/homebrew/bin:${env.PATH}"
+        DOCKER_USER = "richa111"
   }
   stages{
      stage('Create virtual environment') {
