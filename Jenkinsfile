@@ -1,11 +1,6 @@
 pipeline{
   agent any
   stages{
-     stage('Checkout'){
-       steps{
-         checkout scm
-       }
-     } 
      stage('Create virtual environment') {
             steps {
                 sh 'python3 -m venv .venv'
