@@ -20,11 +20,6 @@ pipeline{
            sh '.venv/bin/python -m pytest'
        }
      }
-     stage('Security') {
-      steps {
-         echo 'Security scan will be added here'
-      }
-     }  
      stage('Get git sha'){
        steps {
          script{
@@ -33,13 +28,24 @@ pipeline{
               returnStdout: true
            ).trim()
            echo "Building commit:${env.GIT_SHA}"
+           env.DOCKER_IMAGE = "DOCKER_USER/myrepo:${GIT_SHA}"
+           echo "Image: ${env.DOCKER_IMAGE}"
          }
        }
      }
      stage('Docker Build') {
        steps {
-          sh 'docker build -t $DOCKER_USER/myrepo:${GIT_SHA} .'
+          sh 'docker build -t "$DOCKER_IMAGE" .'
        }
+     }
+     stage('Security') {
+      steps {
+        sh '''
+            trivy image \
+                --severity HIGH,CRITICAL \
+                "$DOCKER_IMAGE"
+        '''
+      }
      }
      stage('Docker Push') {
       steps {
