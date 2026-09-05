@@ -37,7 +37,7 @@ pipeline{
      }
      stage('Docker Build') {
        steps {
-          sh 'docker build -t sre-demo:${GIT_SHA} .'
+          sh 'docker build -t myrepo:${GIT_SHA} .'
        }
      }
      stage('Docker Push') {
