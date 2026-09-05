@@ -3,7 +3,7 @@ pipeline{
   stages{
      stage('Checkout'){
        steps{
-         scheckout scm
+         checkout scm
        }
      } 
      stage('Install dependancies'){
